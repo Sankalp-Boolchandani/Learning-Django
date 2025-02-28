@@ -1,0 +1,2 @@
+Self notes:
+  - Always add the app as soon as you create it in the setting .py to register it. Why? So that the apps are integrated/mapped correctly in django        #commit-message: "creating and understanding the first apps"
