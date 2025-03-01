@@ -4,7 +4,8 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-  return render(request, 'index.html')
+  page="Index page"
+  return render(request, 'index.html', context={'page':page})
 
 def success_page(request):
   return HttpResponse("<h1>This is success page</h1>")
@@ -21,3 +22,11 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, velit eveniet n
     {'name':'shubhman', 'age':24},
   ]
   return render(request, 'context.html', context={'peoples':peoples, 'text':text})
+
+def contact(request):
+  page="Contact page"
+  return render(request, 'contact.html', context={'page':page})
+
+def about(request):
+  page="About page"
+  return render(request, 'about.html', context={'page':page})
