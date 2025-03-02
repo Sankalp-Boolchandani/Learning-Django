@@ -8,7 +8,6 @@ class Player(models.Model):
   age=models.IntegerField()
   address=models.TextField()
   email=models.EmailField(null=True, blank=True)
-  dob=models.DateField(null=True, blank=True)
 
 class User(models.Model):
   pass
