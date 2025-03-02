@@ -7,7 +7,7 @@ class Player(models.Model):
   name=models.CharField(max_length=100)
   age=models.IntegerField()
   address=models.TextField()
-  email=models.EmailField()
+  email=models.EmailField(null=True, blank=True)
   dob=models.DateField(null=True, blank=True)
 
 class User(models.Model):
