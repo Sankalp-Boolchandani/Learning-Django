@@ -11,3 +11,11 @@ class Player(models.Model):
 
 class User(models.Model):
   pass
+
+class Car(models.Model):
+  name=models.CharField(max_length=50)
+  topSpeed=models.IntegerField()
+
+  def __str__(self):
+      return self.name
+  
