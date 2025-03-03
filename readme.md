@@ -16,5 +16,5 @@
 # About Project:
   - PP: initial for "personal project" used in commits
 
-# To-Do:
+# To-Do(self, after project):
   - Use CDN(AWS s3) for storing and accessing the images

@@ -17,7 +17,9 @@
         <th scope="row">{{forloop.counter}}</th>
         <td>{{recipe.recipe_name}}</td>
         <td>{{recipe.recipe_desc}}</td>
-        <td>{{recipe.recipe_image}}</td>
+        <td>
+          <img src="/media/{{recipe.recipe_image}}" style="height: 100px;">
+        </td>
         <td><a class="btn btn-danger btn-sm" href="deleteRecipe/{{recipe.id}}/" role="button">Delete</a></td>
       </tr>
       {% endfor %}
