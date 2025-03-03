@@ -23,6 +23,8 @@ urlpatterns = [
     path('contact', contact, name='contact'),
     path('about', about, name='about'),
     path('recipe', recipe, name='recipe'),
+    path('allRecipes', allRecipes, name='viewRecipes'),
+    path('deleteRecipe/<id>/', deleteRecipe, name='deleteRecipe'),
 
     path('success_page', success_page, name='success_page'),
 

@@ -23,3 +23,14 @@ def recipe(request):
     return redirect("/recipe")
 
   return render(request, 'recipes.html', context={'page':page})
+
+def allRecipes(request):
+  page="Your Recipes"
+  queryset=Recipe.objects.all()
+  context={"recipes":queryset, "page":page}
+  return render(request, "viewAllRecipes.html", context) #vege\templates\viewAllRecipes.html
+
+def deleteRecipe(request, id):
+  recipe=Recipe.objects.get(id=id)
+  recipe.delete()
+  return redirect("/allRecipes")
