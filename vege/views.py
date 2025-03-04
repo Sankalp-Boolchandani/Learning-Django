@@ -42,14 +42,14 @@ def updateRecipe(request, id):
 
   if request.method=="POST":
     data=request.POST
-    
+
     recipe.recipe_name=data.get("recipe_name")
     recipe.recipe_desc=data.get("recipe_desc")
     if request.FILES.get("recipe_image"):
       recipe.recipe_image=request.FILES.get("recipe_image")
     recipe.save()
 
-    return redirect("/allRecipes")
+    return redirect("/updateRecipe/"+id+"/")
     
   context={
     "page":page,

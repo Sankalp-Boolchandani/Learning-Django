@@ -1,6 +1,30 @@
 {% extends "base-template.html" %}
 {% block start %}
 
+<a href="/allRecipes">View Your Recipes</a>
+<hr>
+<div class="conatiner m-6">
+  <table class="table p-6">
+    <thead>
+      <tr>
+        <th scope="col">Recipe ID</th>
+        <th scope="col">Recipe Name</th>
+        <th scope="col">Recipe Description</th>
+        <th scope="col">Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">{{recipe.id}}</th>
+        <td>{{recipe.recipe_name}}</td>
+        <td>{{recipe.recipe_desc}}</td>
+        <td>
+          <img src="/media/{{recipe.recipe_image}}" style="height: 100px;">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <div>
   <h2 align="center">Update Recipe</h2>
 </div>
@@ -23,8 +47,5 @@
   </div>
   <button type="submit" class="btn btn-success">Update Recipe</button>
 </form>
-
-<hr>
-<a href="/allRecipes">View Your Recipes</a>
 
 {% endblock %}
