@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from vege.models import *
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -34,3 +35,24 @@ def deleteRecipe(request, id):
   recipe=Recipe.objects.get(id=id)
   recipe.delete()
   return redirect("/allRecipes")
+
+def updateRecipe(request, id):
+  page="Update Recipe"
+  recipe=Recipe.objects.get(id=id)
+
+  if request.method=="POST":
+    data=request.POST
+    
+    recipe.recipe_name=data.get("recipe_name")
+    recipe.recipe_desc=data.get("recipe_desc")
+    if request.FILES.get("recipe_image"):
+      recipe.recipe_image=request.FILES.get("recipe_image")
+    recipe.save()
+
+    return redirect("/allRecipes")
+    
+  context={
+    "page":page,
+    "recipe":recipe
+    }
+  return render(request, "updateRecipe.html", context) #vege\templates\updateRecipe.html
