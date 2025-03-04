@@ -27,8 +27,14 @@ def recipe(request):
 
 def allRecipes(request):
   page="Your Recipes"
-  queryset=Recipe.objects.all()
-  context={"recipes":queryset, "page":page}
+  recipes=Recipe.objects.all()
+
+  #used to get the string that is being searched in the search bar. Django identifies the result with the associated name which in this case is "search"
+  # first .GET is for the get method, second .get is for getting the result with the associated name 
+  if request.GET.get('search'): 
+    recipes=recipes.filter(recipe_name__icontains = request.GET.get('search'))
+  
+  context={"recipes":recipes, "page":page}
   return render(request, "viewAllRecipes.html", context) #vege\templates\viewAllRecipes.html
 
 def deleteRecipe(request, id):

@@ -1,6 +1,17 @@
 {% extends "base-template.html" %}
 {% block start %}
+
 <div class="container">
+  <div class="mb-3">
+    <form>
+      <label class="mt-2"><strong>Recipe Name</strong></label>
+      <input type="text" class="form-control mt-2" id="exampleRecipeName" name="search" placeholder="Enter name">
+      <button type="submit" class="btn btn-primary btn-sm mt-2">Search</button>
+    </form>
+  </div>
+</div>
+<hr>
+<div class="container mt-6">
   <table class="table p-6">
     <thead>
       <tr>
