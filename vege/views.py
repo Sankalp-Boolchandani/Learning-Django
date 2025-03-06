@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from vege.models import *
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 # Create your views here.
 
@@ -74,17 +75,26 @@ def login_page(request):
 def register_page(request):
   page="Register"
   if request.method=="POST":
-    user=request.POST
-    User.objects.create(
-      first_name=user.get("first_name"),
-      last_name=user.get("last_name"),
-      username=user.get("username"),
-      password=user.get("password")
-    )
-    return redirect("/login")
+    data=request.POST
+    first_name=data.get("first_name")
+    last_name=data.get("last_name")
+    username=data.get("username")
+    password=data.get("password")
 
+    user=User.objects.filter(username=username)
+    if user.exists():
+      messages.error(request, "Username already taken.")
+      return redirect("/register")
+    else:
+      user=User.objects.create(
+        first_name=first_name,
+        last_name=last_name,
+        username=username
+      )
+      user.set_password(password)
+      user.save()
 
-  context={
-    "page":page,
-    }
-  return render(request, "register.html", context)
+      messages.success(request, "User created successfully.")
+      return redirect("/register")
+
+  return render(request, "register.html", context={"page":page})
