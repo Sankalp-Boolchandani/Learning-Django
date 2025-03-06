@@ -8,6 +8,8 @@
   - Models: DB structure. Schema of the DB cosisting of all the fields.
   - Unless stated otherwise, by default method of a form is GET. Can be used for getting all the results or searching queries/objects/items.
   - __icontains is used to search related queries if they contain the specified string in the search option
+  - autheticate: in built django function that helps us check the credentials for logging in
+  - login: in built django function that logs in the user for a session, i.e. using this function helps save login details of a user for a specific time or till one logs out. Basically helps logging in.
   
 
 # Migrations:

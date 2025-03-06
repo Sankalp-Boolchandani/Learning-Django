@@ -3,9 +3,12 @@ from vege.models import *
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required(login_url="login_page")
 def recipe(request):
   page="Recipe page"
   if request.method=="POST":
@@ -27,6 +30,7 @@ def recipe(request):
 
   return render(request, 'recipes.html', context={'page':page})
 
+@login_required(login_url="login_page")
 def allRecipes(request):
   page="Your Recipes"
   recipes=Recipe.objects.all()
@@ -39,11 +43,13 @@ def allRecipes(request):
   context={"recipes":recipes, "page":page}
   return render(request, "viewAllRecipes.html", context) #vege\templates\viewAllRecipes.html
 
+@login_required(login_url="login_page")
 def deleteRecipe(request, id):
   recipe=Recipe.objects.get(id=id)
   recipe.delete()
   return redirect("/allRecipes")
 
+@login_required(login_url="login_page")
 def updateRecipe(request, id):
   page="Update Recipe"
   recipe=Recipe.objects.get(id=id)
@@ -67,10 +73,24 @@ def updateRecipe(request, id):
 
 def login_page(request):
   page="Login"
-  context={
-    "page":page,
-    }
-  return render(request, "login.html", context)
+  
+  if request.method=="POST":
+    data=request.POST
+    username=data.get("username")
+    password=data.get("password")
+
+    if not User.objects.filter(username=username).exists():
+      messages.error(request, "User doesn't exists.")
+      return redirect("/login")
+    else:
+      user=User.objects.get(username=username)
+      if authenticate(username=username, password=password):
+        login(request, user)
+        return redirect("/recipe")
+      else:
+        messages.error(request, "Invalid credentials.")
+
+  return render(request, "login.html", context={"page":page})
 
 def register_page(request):
   page="Register"
@@ -98,3 +118,8 @@ def register_page(request):
       return redirect("/register")
 
   return render(request, "register.html", context={"page":page})
+
+@login_required(login_url="login_page")
+def logout_user(request):
+  logout(request)
+  return redirect("/login_page")
