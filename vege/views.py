@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from vege.models import *
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -62,3 +63,28 @@ def updateRecipe(request, id):
     "recipe":recipe
     }
   return render(request, "updateRecipe.html", context) #vege\templates\updateRecipe.html
+
+def login_page(request):
+  page="Login"
+  context={
+    "page":page,
+    }
+  return render(request, "login.html", context)
+
+def register_page(request):
+  page="Register"
+  if request.method=="POST":
+    user=request.POST
+    User.objects.create(
+      first_name=user.get("first_name"),
+      last_name=user.get("last_name"),
+      username=user.get("username"),
+      password=user.get("password")
+    )
+    return redirect("/login")
+
+
+  context={
+    "page":page,
+    }
+  return render(request, "register.html", context)

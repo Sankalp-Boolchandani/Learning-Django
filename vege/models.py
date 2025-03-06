@@ -1,9 +1,10 @@
-from email.mime import image
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 class Recipe(models.Model):
+  user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
   recipe_name=models.CharField(max_length=100)
   recipe_desc=models.TextField()
   recipe_image=models.ImageField(upload_to="vege/images")
