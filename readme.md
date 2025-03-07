@@ -20,5 +20,16 @@
 # About Project:
   - PP: initial for "personal project" used in commits
 
+# Django ORM:
+  - somewhat in relation to sql.
+  - order_by('field') - helps in arranging in ascending order. order_by('-field') for descending
+    *ex: Recipe.objects.all().order_by()*
+  - __lte: helps giving a range less than specified number
+    *ex: Recipe.objects.filter(recipe_views__lte=20)*
+  - __gte: helps giving a range greater than specified number
+    *ex: Recipe.objects.filter(recipe_views__gte=20)*
+  - slicing: works similar to sl command LIMIT. Gives the most or least number of specified items
+    *ex: Recipe.objects.all().order_by('recipe_views')[0,100]. Gives 100 items with in ascending order of views* 
+
 # To-Do(self, after project):
   - Use CDN(AWS s3) for storing and accessing the images

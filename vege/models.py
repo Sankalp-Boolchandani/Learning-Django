@@ -8,3 +8,4 @@ class Recipe(models.Model):
   recipe_name=models.CharField(max_length=100)
   recipe_desc=models.TextField()
   recipe_image=models.ImageField(upload_to="vege/images")
+  recipe_views=models.IntegerField(null=True)
