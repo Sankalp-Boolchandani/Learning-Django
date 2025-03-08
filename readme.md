@@ -55,6 +55,10 @@
     * ex:  Student.objects.values('name', 'age')
   - get: returns the result as per asked in the param. Throws an exception if no data is present in result.
     * ex: Student.objects.get(name='Aaron')
+  - aggregate - used to get the aggregate value of a column. A column function not a row. Avg/Max/Min/Count
+    * ex: Student.objects.aggregate(Avg('age')) - gives the aggregate age of all the people in the column
+  - annotate - used to get data across two different columns. Correlated data. Like getting the count of all the people of a specifc department.
+    * ex: Student.objects.values('age', 'name').annotate(Count('age'), Count('name'))     <!-- basically gives age, name and count of age, count of name(1,1 in this case) -->
 
 # To-Do(self, after project):
   - Use CDN(AWS s3) for storing and accessing the images
