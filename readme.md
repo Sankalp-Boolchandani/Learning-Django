@@ -42,19 +42,19 @@
     * Student.objects.filter(department__department="Civil"): gives out all the people of civil depart.
       * first department is the name of the foreign key model referenced. Second department is the key of the table that is pointed to
     * Student.objects.filter(department__department__in=["Civil", "Mechanical"]): gives people of civil and mech dept.
-    * exclude: return all the other data except the param passed.
-      * ex: Student.objects.exclude(department__department="Civil"): gives out people of all branches except civil depart.
-    * exists: returns boolean value if the data with param exists
-      * ex: Student.objects.filter(name="name").exists()
-    * values - returns the values of the object called in the form of a dictionary
-      * ex: Student.objects.values()
-    * distinct(param)   #sqlite doesn't supports this
-    * reverse: reverses the resulting queryset
-      * ex: Student.objects.all().reverse()
-    * values_set: returns the required values in the result. Returns a list of tuples
-      * ex:  Student.objects.values('name', 'age')
-    * get: returns the result as per asked in the param. Throws an exception if no data is present in result.
-      * ex: Student.objects.get(name='Aaron')
+  - exclude: return all the other data except the param passed.
+   * ex: Student.objects.exclude(department__department="Civil"): gives out people of all branches except civil depart.
+  - exists: returns boolean value if the data with param exists
+   * ex: Student.objects.filter(name="name").exists()
+  - values - returns the values of the object called in the form of a dictionary
+   * ex: Student.objects.values()
+  - distinct(param)   #sqlite doesn't supports this
+  - reverse: reverses the resulting queryset
+   * ex: Student.objects.all().reverse()
+  - values_set: returns the required values in the result. Returns a list of tuples
+   * ex:  Student.objects.values('name', 'age')
+  - get: returns the result as per asked in the param. Throws an exception if no data is present in result.
+   * ex: Student.objects.get(name='Aaron')
 
 # To-Do(self, after project):
   - Use CDN(AWS s3) for storing and accessing the images
