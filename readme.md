@@ -23,13 +23,38 @@
 # Django ORM:
   - somewhat in relation to sql.
   - order_by('field') - helps in arranging in ascending order. order_by('-field') for descending
-    *ex: Recipe.objects.all().order_by()*
+    * ex: Recipe.objects.all().order_by()
+  - slicing: works similar to sql command LIMIT. Gives the most or least number of specified items. represented by []
+    * ex: Recipe.objects.all().order_by('recipe_views')[0,100]. Gives 100 items with in ascending order of views
+  - Django identifies double underscore (__) as the start of special expression.
   - __lte: helps giving a range less than specified number
-    *ex: Recipe.objects.filter(recipe_views__lte=20)*
+    * ex: Recipe.objects.filter(recipe_views__lte=20)
   - __gte: helps giving a range greater than specified number
-    *ex: Recipe.objects.filter(recipe_views__gte=20)*
-  - slicing: works similar to sl command LIMIT. Gives the most or least number of specified items
-    *ex: Recipe.objects.all().order_by('recipe_views')[0,100]. Gives 100 items with in ascending order of views* 
+    * ex: Recipe.objects.filter(recipe_views__gte=20)
+  - __startswith: filters out strings that start with a specifc set of chars.
+  - __endswith: filters out strings that ends with a specifc set of chars.
+    * ex: Recipe.objects.filter(recipe_name__endswith="string")
+  - __icontains: filters out strings that contain specifc set of chars.
+    * ex: Recipe.objects.filter(recipe_name__icontains="string")........startswith and endswith follow the same
+  - **foreignkey**
+    * Student.objects.filter(department=3): it will give out a queryset based on department id
+    * But Id can be unknow so instead
+    * Student.objects.filter(department__department="Civil"): gives out all the people of civil depart.
+      * first department is the name of the foreign key model referenced. Second department is the key of the table that is pointed to
+    * Student.objects.filter(department__department__in=["Civil", "Mechanical"]): gives people of civil and mech dept.
+    * exclude: return all the other data except the param passed.
+      * ex: Student.objects.exclude(department__department="Civil"): gives out people of all branches except civil depart.
+    * exists: returns boolean value if the data with param exists
+      * ex: Student.objects.filter(name="name").exists()
+    * values - returns the values of the object called in the form of a dictionary
+      * ex: Student.objects.values()
+    * distinct(param)   #sqlite doesn't supports this
+    * reverse: reverses the resulting queryset
+      * ex: Student.objects.all().reverse()
+    * values_set: returns the required values in the result. Returns a list of tuples
+      * ex:  Student.objects.values('name', 'age')
+    * get: returns the result as per asked in the param. Throws an exception if no data is present in result.
+      * ex: Student.objects.get(name='Aaron')
 
 # To-Do(self, after project):
   - Use CDN(AWS s3) for storing and accessing the images
