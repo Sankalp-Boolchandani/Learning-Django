@@ -31,3 +31,6 @@ class Student(models.Model):
    class Meta:
       ordering=['name']
       verbose_name='student'
+
+
+#todo: create a new class to add dummy data into the DB using faker (department, studentId, student)
