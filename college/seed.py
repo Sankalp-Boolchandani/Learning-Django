@@ -4,22 +4,23 @@ import random
 
 fake=Faker()
 
-def create_stu_id_obj():
-  id=str(random.randint(100,999))
-  StudentId.objects.create(studentId="STU-0"+id)
-  return StudentId.objects.get(studentId="STU-0"+id)
-
 def create_students(n=10)->None:
   departments=Department.objects.all()
   for _ in range(n):
+    #assigning department
     department_index=random.randint(0,3)
     department=departments[department_index]
 
-    student_id=create_stu_id_obj()
-
+    #creating studentid object for assigning to student
+    student_id=str("STU-0"+str(random.randint(100,999)))
+    student_id_object=StudentId()
+    student_id_object.studentId=student_id
+    student_id_object.save()
+    
+    #creating student object
     Student.objects.create(
       department=department,
-      student_id=student_id,
+      student_id=student_id_object,
       name=fake.name(),
       age=random.randint(18,25),
       email=fake.email(),
