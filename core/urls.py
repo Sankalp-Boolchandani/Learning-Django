@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from home.views import *
 from vege.views import *
+from college.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -26,20 +27,22 @@ urlpatterns = [
     path('', home, name='home'),
     path('contact', contact, name='contact'),
     path('about', about, name='about'),
+    path('admin/', admin.site.urls),
+    path('context', context, name='context'),
+
+    # Recipe
     path('recipe', recipe, name='recipe'),
     path('allRecipes', allRecipes, name='viewRecipes'),
     path('deleteRecipe/<id>/', deleteRecipe, name='deleteRecipe'),
     path('updateRecipe/<id>/', updateRecipe, name='deleteRecipe'),
-
     path('login_page', login_page, name='login_page'),
     path('register_page', register_page, name='register_page'),
     path('logout_user', logout_user, name='logout_user'),
-
     path('success_page', success_page, name='success_page'),
 
-    path('admin/', admin.site.urls),
+    # College
+    path('students', get_students, name='get_students'),
 
-    path('context', context, name='context')
 ]
 
 
