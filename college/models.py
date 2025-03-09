@@ -32,5 +32,20 @@ class Student(models.Model):
       ordering=['name']
       verbose_name='student'
 
+class Subject(models.Model):
+   subject_name=models.CharField(max_length=100)
 
-#todo: create a new class to add dummy data into the DB using faker (department, studentId, student)
+   def __str__(self):
+       return self.subject_name
+   
+class SubjectMarks(models.Model):
+   student=models.ForeignKey(Student, related_name="student", on_delete=models.CASCADE)
+   subject=models.ForeignKey(Subject, related_name="subject", on_delete=models.CASCADE)
+   marks=models.IntegerField()
+
+   def __str__(self):
+       return f'{self.student} {self.subject}'   
+
+   class Meta:
+      unique_together=['student', 'subject']
+      verbose_name_plural='Subject Marks'

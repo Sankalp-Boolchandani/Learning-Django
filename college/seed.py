@@ -26,3 +26,14 @@ def create_students(n=10)->None:
       email=fake.email(),
       address=fake.address()
     )
+
+def create_student_marks()->None:
+  students=Student.objects.all()
+  for student in students:
+    subjects=Subject.objects.all()
+    for subject in subjects:
+      SubjectMarks.objects.create(
+        student=student,
+        subject=subject,
+        marks=random.randint(0,100)
+      )
