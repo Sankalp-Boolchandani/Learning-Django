@@ -42,6 +42,7 @@ urlpatterns = [
 
     # College
     path('students', get_students, name='get_students'),
+    path('see_marks/<email>', see_marks, name='see_marks'),
 
 ]
 

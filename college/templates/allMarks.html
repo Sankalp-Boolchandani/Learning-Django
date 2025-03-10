@@ -1,0 +1,29 @@
+{% extends "base-template.html" %}
+{% block start %}
+
+<div>
+  <h1>Rank:</h1>
+  <h1>Total marks: {{totalMarks.totalMarks}}</h1>
+
+  <table class="table table-bordered mt-6">
+    <thead>
+      <tr>
+        <th scope="col">S.no</th>
+        <th colspan="2">Department</th>
+        <th scope="col">Marks</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for marks in allMarks %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td colspan="2">{{marks.subject}}</td>
+        <td>{{marks.marks}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}

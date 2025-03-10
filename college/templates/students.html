@@ -16,6 +16,7 @@
           <th scope="col">Department</th>
           <th scope="col">Email</th>
           <th scope="col">age</th>
+          <th scope="col">Marks</th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +28,7 @@
           <td>{{student.department}}</td>
           <td>{{student.email}}</td>
           <td>{{student.age}}</td>
+          <td><a href="see_marks/{{student.email}}">View Marks</a></td>
         </tr>
         {% endfor %}
       </tbody>
