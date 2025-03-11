@@ -10,6 +10,7 @@
   - __icontains is used to search related queries if they contain the specified string in the search option
   - autheticate: in built django function that helps us check the credentials for logging in
   - login: in built django function that logs in the user for a session, i.e. using this function helps save login details of a user for a specific time or till one logs out. Basically helps logging in.
+  - related_name in models play an important role when using a foreign key. always give reasonable/appropriate names. Its like pointing to a specific table to get data of a from it referencing foreign key.
   
 
 # Migrations:
@@ -58,7 +59,7 @@
   - aggregate - used to get the aggregate value of a column. A column function not a row. Avg/Max/Min/Count
     * ex: Student.objects.aggregate(Avg('age')) - gives the aggregate age of all the people in the column
   - annotate - used to get data across two different columns. Correlated data. Like getting the count of all the people of a specifc department.
-    * ex: Student.objects.values('age', 'name').annotate(Count('age'), Count('name'))     <!-- basically gives age, name and count of age, count of name(1,1 in this case) -->
+    * ex: Student.objects.values('age', 'name').annotate(Count('age'), Count('name'))---------basically gives age, name and count of ages as a query result, count of names as a query result
 
 # To-Do(self, after project):
   - Use CDN(AWS s3) for storing and accessing the images

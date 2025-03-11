@@ -41,11 +41,15 @@ def create_student_marks()->None:
   generate_ranks()
 
 
+# getting marks from SubjectMarks table referencing studentmarks foreign key to get the sum of total marks of a student
+# annotating in descending order since marks of a subject are in SubjectMarks table but we need the Student table data. 
+# That is why related_name field becomes so important. 
+# Since we are annotating it with total marks in descending order, we get ranks with variable i
 def generate_ranks():
-  ranks=Student.objects.annotate(total_marks=Sum('studentmarks__marks')).order_by('-total_marks', 'age')
+  student_ranks=Student.objects.annotate(total_marks=Sum('studentmarks__marks')).order_by('-total_marks', 'age')
 
   i=1
-  for rank in ranks:
+  for rank in student_ranks:
     Report.objects.create(
       student=rank,
       rank=i
