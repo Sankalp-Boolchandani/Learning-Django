@@ -39,7 +39,7 @@ class Subject(models.Model):
        return self.subject_name
    
 class SubjectMarks(models.Model):
-   student=models.ForeignKey(Student, related_name="student", on_delete=models.CASCADE)
+   student=models.ForeignKey(Student, related_name="studentmarks", on_delete=models.CASCADE)
    subject=models.ForeignKey(Subject, related_name="subject", on_delete=models.CASCADE)
    marks=models.IntegerField()
 
@@ -49,3 +49,11 @@ class SubjectMarks(models.Model):
    class Meta:
       unique_together=['student', 'subject']
       verbose_name_plural='Subject Marks'
+
+class Report(models.Model):
+   student=models.ForeignKey(Student, related_name="studentrank", on_delete=models.CASCADE)
+   rank=models.IntegerField()
+   date_of_rank_generation=models.DateField(auto_now_add=True)
+
+   class Meta:
+      unique_together = ['student', 'date_of_rank_generation']

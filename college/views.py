@@ -31,6 +31,6 @@ def see_marks(request, email)->None:
   context={
     "page":"Marksheet",
     "allMarks":allSubMarks,
-    "totalMarks":totalMarks
+    "totalMarks":totalMarks,
   }
   return render(request, 'allMarks.html', context)
