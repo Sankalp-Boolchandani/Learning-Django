@@ -44,15 +44,15 @@ def allRecipes(request):
   return render(request, "viewAllRecipes.html", context) #vege\templates\viewAllRecipes.html
 
 @login_required(login_url="login_page")
-def deleteRecipe(request, id):
-  recipe=Recipe.objects.get(id=id)
+def deleteRecipe(request, slug):
+  recipe=Recipe.objects.get(slug=slug)
   recipe.delete()
   return redirect("/allRecipes")
 
 @login_required(login_url="login_page")
-def updateRecipe(request, id):
+def updateRecipe(request, slug):
   page="Update Recipe"
-  recipe=Recipe.objects.get(id=id)
+  recipe=Recipe.objects.get(slug=slug)
 
   if request.method=="POST":
     data=request.POST
@@ -63,7 +63,7 @@ def updateRecipe(request, id):
       recipe.recipe_image=request.FILES.get("recipe_image")
     recipe.save()
 
-    return redirect("/updateRecipe/"+id+"/")
+    return redirect("/updateRecipe/"+slug+"/")
     
   context={
     "page":page,
@@ -81,7 +81,7 @@ def login_page(request):
 
     if not User.objects.filter(username=username).exists():
       messages.error(request, "User doesn't exists.")
-      return redirect("/login")
+      return redirect("/login_page")
     else:
       user=User.objects.get(username=username)
       if authenticate(username=username, password=password):
@@ -104,7 +104,7 @@ def register_page(request):
     user=User.objects.filter(username=username)
     if user.exists():
       messages.error(request, "Username already taken.")
-      return redirect("/register")
+      return redirect("/register_page")
     else:
       user=User.objects.create(
         first_name=first_name,
@@ -115,7 +115,7 @@ def register_page(request):
       user.save()
 
       messages.success(request, "User created successfully.")
-      return redirect("/register")
+      return redirect("/register_page")
 
   return render(request, "register.html", context={"page":page})
 

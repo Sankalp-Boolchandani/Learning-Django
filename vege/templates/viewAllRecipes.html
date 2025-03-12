@@ -32,8 +32,8 @@
           <img src="/media/{{recipe.recipe_image}}" style="height: 100px;">
         </td>
         <td>
-          <a class="btn btn-danger btn-sm m-2" href="deleteRecipe/{{recipe.id}}/" role="button">Delete</a>
-          <a class="btn btn-warning btn-sm" href="updateRecipe/{{recipe.id}}/" role="button">Update</a>
+          <a class="btn btn-danger btn-sm m-2" href="deleteRecipe/{{recipe.slug}}/" role="button">Delete</a>
+          <a class="btn btn-warning btn-sm" href="updateRecipe/{{recipe.slug}}/" role="button">Update</a>
         </td>
       </tr>
       {% endfor %}

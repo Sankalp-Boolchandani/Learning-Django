@@ -33,8 +33,8 @@ urlpatterns = [
     # Recipe
     path('recipe', recipe, name='recipe'),
     path('allRecipes', allRecipes, name='viewRecipes'),
-    path('deleteRecipe/<id>/', deleteRecipe, name='deleteRecipe'),
-    path('updateRecipe/<id>/', updateRecipe, name='deleteRecipe'),
+    path('deleteRecipe/<slug>/', deleteRecipe, name='deleteRecipe'),
+    path('updateRecipe/<slug>/', updateRecipe, name='deleteRecipe'),
     path('login_page', login_page, name='login_page'),
     path('register_page', register_page, name='register_page'),
     path('logout_user', logout_user, name='logout_user'),

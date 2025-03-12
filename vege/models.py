@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from .utils import *
+from django.utils import timezone
 
 # Create your models here.
 
@@ -9,3 +11,9 @@ class Recipe(models.Model):
   recipe_desc=models.TextField()
   recipe_image=models.ImageField(upload_to="vege/images")
   recipe_views=models.IntegerField(null=True)
+  slug=models.SlugField(unique=True, default=timezone.now())
+  
+  # logic to save slug string automatically on the new object creation
+  def save(self, *args, **kwargs):
+    self.slug=generate_slug(self.recipe_name)
+    super(Recipe, self).save(*args, **kwargs)
