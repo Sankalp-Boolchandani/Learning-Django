@@ -11,6 +11,7 @@
   - autheticate: in built django function that helps us check the credentials for logging in
   - login: in built django function that logs in the user for a session, i.e. using this function helps save login details of a user for a specific time or till one logs out. Basically helps logging in.
   - related_name in models play an important role when using a foreign key. always give reasonable/appropriate names. Its like pointing to a specific table to get data of a from it referencing foreign key.
+  - slug: used as a good coding practice. earlier on clicking update recipe I was passing recipe id in the url which is not correct and can lead to jeopardising project data.  
   
 
 # Migrations:
