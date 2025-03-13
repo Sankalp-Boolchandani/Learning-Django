@@ -64,3 +64,4 @@
 
 # To-Do(self, after project):
   - Use CDN(AWS s3) for storing and accessing the images
+  - send email using django
